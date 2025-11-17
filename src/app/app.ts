@@ -11,6 +11,7 @@ import { ManagedIdentityCredential } from '@azure/identity';
 import * as fs from 'fs';
 import * as path from 'path';
 import config from "../config";
+//ADD MCP IMPORT STATEMENT HERE
 
 //Storage for current order and completed orders
 const storage = new LocalStorage<StorageState>();
@@ -289,10 +290,8 @@ app.on('dialog.submit', async ({ activity, send }) => {
         }
     }
 });
-///ADD MC
 
-
-const logger = new ConsoleLogger('mcp-client', {level: 'debug'});
+//ADD MCP LOGGER STATEMENT HERE
 const prompt = new ChatPrompt(
     {
         instructions: [
@@ -303,7 +302,7 @@ const prompt = new ChatPrompt(
             'When users ask about laptop specifications, available models, or what laptops are available, call the get_laptop_options function.',
             'When users want personalized laptop recommendations based on their use case, budget, or performance needs, call the recommend_laptops function.',
             'Be friendly and helpful. Never ask users to format their requests in a specific way - always use the appropriate function to show them the right form or information.',
-            'When users ask for a status update on their order, use the MCPclientplugin to send the price and date of the order to receieve approval or denial on the purchase.',
+            'When users ask for a status update on their order, use the MCPclientplugin to send the price and date of the order to receieve approval or denial on the purchase. Do not by any means infer approval or denial of the purchase, you must always submit the order to the MCP server for processing.',
             'On startup you will greet users friendly and ask them if they have any technical issues you can help them with or if they need to order a new laptop.',
         ].join('\n'),
         model: new OpenAIChatModel({
