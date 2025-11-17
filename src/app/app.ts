@@ -32,7 +32,7 @@ if (!storage.get('local')) {
 const createTokenFactory = () => {
   return async (scope: string | string[], tenantId?: string): Promise<string> => {
     const managedIdentityCredential = new ManagedIdentityCredential({
-        clientId: '764725a4-1ac4-42f6-9c0f-d4fee6f22a0a'
+        clientId: process.env.CLIENT_ID
       });
     const scopes = Array.isArray(scope) ? scope : [scope];
     const tokenResponse = await managedIdentityCredential.getToken(scopes, {
