@@ -306,14 +306,18 @@ const prompt = new ChatPrompt(
             'On startup you will greet users friendly and ask them if they have any technical issues you can help them with or if they need to order a new laptop.',
         ].join('\n'),
         model: new OpenAIChatModel({
-            model: 'gpt-4.1-mini',
+            model: 'gpt-4o',
             apiKey: process.env.SECRET_AZURE_OPENAI_API_KEY,
             endpoint: process.env.AZURE_OPENAI_ENDPOINT,
             apiVersion: '2025-01-01-preview',
         } as AzureOpenAIChatModelOptions),
         
     },
-)
+) //REPLACE THIS ENTIRE LINE WITH MCP PLUGIN INITIALIZATION CODE
+
+//ADD MCP PLUGIN USAGE HERE
+
+
  // gets a list of the available laptop options   
     .function('get_laptop_options', 'Returns a list of the available laptop options and configurations', async () => {
         try {
